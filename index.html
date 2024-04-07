@@ -1,26 +1,63 @@
-<html lang="pl">
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>JS Project</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      h1 {
-        color: #0b3954;
-      }
-    </style>
+    <title>ReflexGame</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>"
+    />
+    <link rel="stylesheet" href="index.css" />
   </head>
-  <body>
-    <div id="app">
-      <h1 id="main-header">Hello world!</h1>
+  <body class="game-wrapper">
+    <h1>Reflex game</h1>
+    <p class="game-copy">
+      Dive into a world designed to challenge your reflex! Customize your
+      adventure by entering your desired number of attempts in the field below.
+      Then, embark on a thrilling quest to tap or click on a vibrant,
+      ever-changing element using either your mouse or the spacebar.
+    </p>
+    <p class="game-copy-1">Ready, set, react!</p>
+    <div class="game-input-wrapper">
+      <label for="trialCountInput">Number of tries:</label>
+      <input
+        id="trialCountInput"
+        type="number"
+        value="5"
+        step="1"
+        min="1"
+        max="100"
+      />
     </div>
-    <script>
-      alert("Hello world!");
-    </script>
+    <div class="game-buttons-wrapper">
+      <button id="buttonStart" class="game-button">
+        <span>Start game</span>
+      </button>
+      <button id="buttonStop" disabled class="game-button">
+        <span>End game</span>
+      </button>
+    </div>
+    <div id="gameArea" class="game-area">
+      <p class="game-area-text">Set number of tries and start!</p>
+    </div>
+    <div class="game-score-wrapper">
+      <div class="game-score-row">
+        <span>The shortest response time:</span>
+        <span id="minTime">0 ms</span>
+      </div>
+      <div class="game-score-row">
+        <span>The longest response time:</span>
+        <span id="maxTime">0 ms</span>
+      </div>
+      <div class="game-score-row">
+        <span>Average response time: </span>
+        <span id="avgTime">0 ms</span>
+      </div>
+      <div class="game-score-row">
+        <span>The best score: </span>
+        <span id="bestTime">0 ms</span>
+      </div>
+    </div>
+    <script src="index.js"></script>
   </body>
 </html>
