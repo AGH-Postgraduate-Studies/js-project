@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     trialCount = parseInt(trialInput.value, 10) || 5;
     toggleGameButtons(true);
-    gameArea.style.backgroundColor = "grey";
+    gameArea.style.backgroundColor = "white";
     gameArea.style.cursor = "pointer";
     gameArea.textContent = "Wait...";
     resetGameState();
@@ -68,10 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function nextTrial() {
     const time = Math.random() * 2000 + 1000;
-    timeout = setTimeout(changeColor, time);
+    timeout = setTimeout(resetPlayground, time);
+    gameArea.style.backgroundColor = "white";
+    gameArea.textContent = "Wait...";
   }
 
-  function changeColor() {
+  function resetPlayground() {
     const grayScaleValue = Math.floor(Math.random() * 255);
     gameArea.style.backgroundColor = `rgb(${grayScaleValue}, ${grayScaleValue}, ${grayScaleValue})`;
     gameArea.textContent = "Click now!";
