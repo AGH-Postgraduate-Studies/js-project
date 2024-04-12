@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const avgTimeDisplay = document.querySelector("#avgTime");
   const trialInput = document.querySelector("#trialCountInput");
   const bestTimeDisplay = document.querySelector("#bestTime");
+  const gameScore = document.querySelector("#gameScore");
 
   let reactionTimes = [];
   let bestTime = Infinity;
@@ -39,6 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
     gameArea.style.backgroundColor = "white";
     gameArea.style.cursor = "pointer";
     gameArea.textContent = "Wait...";
+    gameScore.style.visibility = "hidden";
+
     resetGameState();
     nextTrial();
   }
@@ -52,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
       gameArea.style.cursor = "default";
       gameArea.style.backgroundColor = "grey";
       gameArea.textContent = "Try again!";
+      gameScore.style.visibility = "visible";
     }
   }
 
@@ -62,26 +66,30 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function resetGameState() {
-    reactionTimes = [];
+    reactionTimes.splice(0, reactionTimes.length);
     currentTrial = 0;
   }
 
   function nextTrial() {
     const time = Math.random() * 2000 + 1000;
+
     timeout = setTimeout(resetPlayground, time);
     gameArea.style.backgroundColor = "white";
     gameArea.textContent = "Wait...";
   }
 
   function resetPlayground() {
-    const grayScaleValue = Math.floor(Math.random() * 255);
-    gameArea.style.backgroundColor = `rgb(${grayScaleValue}, ${grayScaleValue}, ${grayScaleValue})`;
+    gameArea.style.backgroundColor = `gray`;
     gameArea.textContent = "Click now!";
     startTime = new Date();
   }
 
   function recordReaction() {
     if (!startTime) return;
+    if (reactionTimes.length === parseInt(trialInput.value, 10)) return;
+    if (reactionTimes.length < parseInt(trialInput.value, 10)) {
+      gameScore.style.visibility = "visible";
+    }
 
     const endTime = new Date();
     const reactionTime = endTime - startTime;
